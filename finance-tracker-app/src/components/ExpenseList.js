@@ -14,15 +14,18 @@ export default function ExpenseList() {
   const [expenses, setExpenses] = useState([]);
 
   useEffect(() => {
-    // get http call to backend to get expenses
     axios.get("http://localhost:5000/api/expenses").then((res) => {
-      setExpenses(res.data);
-    })
-      .catch((err) => {
-        console.log(err);
+      // Sort expenses in reverse order based on the date property
+      const sortedExpenses = res.data.sort((a, b) => {
+        const dateA = new Date(a.date);
+        const dateB = new Date(b.date);
+        return dateB - dateA; // Sort in descending order (newest to oldest)
       });
+      setExpenses(sortedExpenses);
+    }).catch((err) => {
+      console.log(err);
+    });
   }, []);
-
   return (
     <TableContainer component={Paper} className="custom-table-container">
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
