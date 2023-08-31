@@ -3,3 +3,11 @@
     padding: 12px 1px;
     width: 90px !important;
 }
+
+.horizontal-form {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+  }

@@ -1,5 +1,4 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material/styles';
 import Home from './pages/Home';
 import Taskbar from './components/Taskbar';

@@ -6,5 +6,3 @@
 [] Goals page
 [] Expenses delete call
 [] Auto update with db update
-
-# How to run (for now)
