@@ -4,7 +4,6 @@ import axios from 'axios';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import ExpenseList from './ExpenseList';
 import '../styles/ExpenseInput.css';
 
 export default function ExpenseInput() {
