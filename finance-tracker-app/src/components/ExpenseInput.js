@@ -4,7 +4,7 @@ import axios from 'axios';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import { useRefreshContext } from './RefreshContext';
+import ExpenseList from './ExpenseList';
 import '../styles/ExpenseInput.css';
 
 export default function ExpenseInput() {
@@ -12,8 +12,6 @@ export default function ExpenseInput() {
   const [category, setCategory] = useState('');
   const [amount, setAmount] = useState('');
   const [date, setDate] = useState('');
-
-  const { triggerRefresh } = useRefreshContext()
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -32,7 +30,6 @@ export default function ExpenseInput() {
       setDate('');
 
       console.log('Expense added successfully!');
-      triggerRefresh();
     } catch (error) {
       console.error('Error submitting the form:', error);
       console.log('Error adding the expense. Please try again later.');

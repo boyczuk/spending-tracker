@@ -8,7 +8,6 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import axios from 'axios';
-import { useRefreshContext } from './RefreshContext';
 import '../styles/ExpenseList.css'
 
 export default function ExpenseList() {
@@ -23,8 +22,6 @@ export default function ExpenseList() {
         console.log(err);
       });
   }, []);
-
-  const { refresh } = useRefreshContext();
 
   return (
     <TableContainer component={Paper} className="custom-table-container">
