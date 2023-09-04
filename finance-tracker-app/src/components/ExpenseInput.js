@@ -4,7 +4,6 @@ import axios from 'axios';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import InputAdornment from '@mui/material/InputAdornment';
 import dayjs from 'dayjs';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -23,19 +22,27 @@ export default function ExpenseInput() {
 
     const formattedDate = date.format('YYYY-MM-DD')
 
+    if (isNaN(amount)) {
+      console.error('Invalid amount. Please enter a valid number.');
+      return; // Exit the function if 'amount' is not a valid number
+    }
+
     const formData = {
       description,
       category,
       amount,
       date: formattedDate,
     };
+
+
+
     try {
       await axios.post('http://localhost:5000/api/expenses', formData);
 
       setDescription('');
       setCategory('');
       setAmount('');
-      setDate(dayjs('2023-08-31'));
+      setDate(dayjs());
 
       console.log('Expense added successfully!');
     } catch (error) {
@@ -78,7 +85,6 @@ export default function ExpenseInput() {
         variant="outlined"
         value={amount}
         onChange={(event) => setAmount(event.target.value)}
-        startAdornment={<InputAdornment position="start">$</InputAdornment>}
       />
 
       <LocalizationProvider dateAdapter={AdapterDayjs}>

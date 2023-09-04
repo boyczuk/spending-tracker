@@ -9,8 +9,9 @@
   "name": "my-finance-tracker",
   "version": "1.0.0",
   "scripts": {
-    "start": "concurrently \"npm run start-react\" \"npm run start-electron\" ",
-    "start-react": "cd finance-tracker-app && npm start",
+    "start": "concurrently \"npm run start-frontend\"  \"npm run start-backend\" \"npm run start-electron\" ",
+    "start-backend": "cd backend && py app.py",
+    "start-frontend": "cd finance-tracker-app && npm start",
     "build": "cd finance-tracker-app && npm run build",
     "start-electron": "electron .",
     "electron-pack": "electron-builder"
