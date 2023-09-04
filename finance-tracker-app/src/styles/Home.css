@@ -6,3 +6,13 @@ body {
     color: #FFFF;
     margin-left: 5%;
   }
+  
+  .charts_container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .ExpenseLineChart {
+    margin-top: 20px; /* Adjust this value as needed */
+  }

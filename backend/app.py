@@ -47,6 +47,27 @@ def get_expenses():
     ]
     return jsonify(result)
 
+@app.route('/api/monthly-expenses', methods=['GET'])
+def get_monthly_expenses():
+    import datetime
+    today = datetime.date.today()
+    first_day_of_month = today.replace(day=1)
+    last_day_of_month = today.replace(day=1, month=today.month+1) - datetime.timedelta(days=1)
+    
+    with sqlite3.connect('expenses.db') as conn:
+        cursor = conn.cursor()
+        cursor.execute('SELECT date, SUM(amount) FROM expenses WHERE date BETWEEN ? AND ? GROUP BY date ORDER BY date', (first_day_of_month, last_day_of_month))
+        expenses = cursor.fetchall()
+
+    result = [
+        {
+            "date": date,
+            "totalAmount": totalAmount
+        }
+        for (date, totalAmount) in expenses
+    ]
+    return jsonify(result)
+
 
 if __name__ == '__main__':
     init_db()
