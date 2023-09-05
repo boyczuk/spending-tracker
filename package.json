@@ -9,13 +9,14 @@
   "name": "my-finance-tracker",
   "version": "1.0.0",
   "scripts": {
-    "start": "concurrently \"npm run start-frontend\"  \"npm run start-backend\" \"npm run start-electron\" ",
+    "start": "concurrently \"npm run start-frontend\"  \"npm run start-backend\" \"npm run start-electron-wait\" ",
     "start-backend": "cd backend && py app.py",
     "start-frontend": "cd finance-tracker-app && npm start",
     "build": "cd finance-tracker-app && npm run build",
     "start-electron": "electron .",
+    "start-electron-wait": "wait-on http://localhost:3000 && npm run start-electron",
     "electron-pack": "electron-builder"
-  },
+},
   "dependencies": {
     "axios": "^1.4.0"
   }
