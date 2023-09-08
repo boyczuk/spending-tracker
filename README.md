@@ -1,6 +1,3 @@
 # How to run (for now)
-run `py app.py` for backend in /backend
+run `npm start` in root folder
 
-`npm start` in /finance-tracker-app
-
-`npm start` in root folder
