@@ -29,6 +29,22 @@ def add_expense():
     return jsonify({'message': 'Expense added successfully.'}), 201
 
 
+@app.route('/api/delete_expense/<int:id>', methods=['DELETE'])
+def delete_expense(id):
+    with sqlite3.connect('expenses.db') as conn:
+        cursor = conn.cursor()
+        cursor.execute('SELECT * FROM expenses WHERE id = ?', (id,))
+        expense = cursor.fetchone()
+
+        if not expense:
+            return jsonify({'error': 'Expense not found'}), 404
+        
+        cursor.execute('DELETE FROM expenses WHERE id = ?', (id,))
+        conn.commit()
+    
+    return jsonify({'message': 'Expense successfully deleted'}), 200
+
+
 @app.route('/api/expenses', methods=['GET'])
 def get_expenses():
     with sqlite3.connect('expenses.db') as conn:
